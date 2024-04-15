@@ -1,5 +1,5 @@
 #!/bin/bash
 
-# find . -maxdepth 1 \( -type f -executable -o -type d -o -size 0 \) -exec file {} \; | grep -v 'text'
+echo "Display executable file____ " 
 
-ls -a
+find -executable 
