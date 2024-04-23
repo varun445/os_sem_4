@@ -8,11 +8,13 @@ public class FCFS {
         // int[] arrivalTime = {0, 1, 1, 2, 2};
 
         int[][] arrivalTimeAndBurstTime = {
-            {0, 6},
-            {1, 2},
-            {1, 3},
-            {2, 1},
-            {2, 2}
+            {2, 2},
+            {5, 6},
+            {0, 4},
+            {0, 7},
+            {7, 4},
+            {3, 5},
+            {1, 10}
         };
 
         Arrays.sort(arrivalTimeAndBurstTime, new Comparator<int[]>() {
