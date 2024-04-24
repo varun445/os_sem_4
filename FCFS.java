@@ -4,9 +4,6 @@ import java.util.Comparator;
 
 public class FCFS {
     public static void main(String[] args) {
-        // int[] burstTime = {6, 2, 3, 1, 2};
-        // int[] arrivalTime = {0, 1, 1, 2, 2};
-
         int[][] arrivalTimeAndBurstTime = {
             {2, 2},
             {5, 6},
@@ -24,15 +21,14 @@ public class FCFS {
             }
         });
 
-        for(int i = 0; i < arrivalTimeAndBurstTime.length; i++) {
-            System.out.println("Arrival Time: " + arrivalTimeAndBurstTime[i][0] + " Burst Time: " + arrivalTimeAndBurstTime[i][1]);
-        }
+        // for(int i = 0; i < arrivalTimeAndBurstTime.length; i++) {
+        //     System.out.println("Arrival Time: " + arrivalTimeAndBurstTime[i][0] + " Burst Time: " + arrivalTimeAndBurstTime[i][1]);
+        // }
 
         // finish time
         ArrayList<Integer> finishTime = new ArrayList<>();
         int a = 0;
         int b = arrivalTimeAndBurstTime[0][1];
-        System.out.println(b);
         finishTime.add(b);
         for(int i = 1; i < arrivalTimeAndBurstTime.length; i++) {
             a = b;
@@ -40,8 +36,8 @@ public class FCFS {
             finishTime.add(b);
         }
         int averageFinishTime = b / finishTime.size();
-        System.out.println(finishTime);
-        System.out.println(averageFinishTime);
+        // System.out.println("Finish Time: " + finishTime);
+        // System.out.println("Average Finish Time: " + averageFinishTime);
     
         // Turnaround time
         ArrayList<Integer> turnaroundTime = new ArrayList<>();
@@ -50,8 +46,8 @@ public class FCFS {
             someNum += finishTime.get(i) - arrivalTimeAndBurstTime[i][0]; 
             turnaroundTime.add(finishTime.get(i) - arrivalTimeAndBurstTime[i][0]);
         }
-        System.out.println(turnaroundTime);
-        System.out.println(someNum/turnaroundTime.size());
+        // System.out.println("Turn around Time: " + turnaroundTime);
+        // System.out.println("Average Turn around time: " + someNum/turnaroundTime.size());
 
         // Waiting time
         ArrayList<Integer> waitTime = new ArrayList<>();
@@ -60,7 +56,16 @@ public class FCFS {
             someNewNumber += turnaroundTime.get(i) - arrivalTimeAndBurstTime[i][1];
             waitTime.add(turnaroundTime.get(i) - arrivalTimeAndBurstTime[i][1]);
         }
-        System.out.println(waitTime);
-        System.out.println(someNewNumber/waitTime.size());
+        // System.out.println("Wait time: " + waitTime);
+        // System.out.println("Average wait time: " + someNewNumber/waitTime.size());
+    
+    
+        System.out.println("Index | Arrival Time | Burst Time | Finish Time | Turnaround Time | Wait Time");
+        System.out.println("------|--------------|------------|-------------|-----------------|----------");
+        for (int i = 0; i < arrivalTimeAndBurstTime.length; i++) {
+            System.out.printf("%5d | %12d | %10d | %11d | %15d | %8d\n", i, arrivalTimeAndBurstTime[i][0], arrivalTimeAndBurstTime[i][1], finishTime.get(i), turnaroundTime.get(i), waitTime.get(i));
+        }
+        System.out.println("------|--------------|------------|-------------|-----------------|----------");
+        System.out.printf("Avg   |              |            | %11d | %15d | %8.2f\n", averageFinishTime, someNum/turnaroundTime.size(), someNewNumber/waitTime.size());
     } 
 }
