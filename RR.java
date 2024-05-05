@@ -5,15 +5,16 @@ import java.util.Comparator;
 public class RR {
     public static void main(String[] args) {
 
-        Process p1 = new Process("p1", 0, 6);
-        Process p2 = new Process("p2", 1, 2);
-        Process p3 = new Process("p3", 1, 3);
-        Process p4 = new Process("p4", 2, 1);
+        Process p1 = new Process("p1", 5, 5);
+        Process p2 = new Process("p2", 4, 6);
+        Process p3 = new Process("p3", 3, 7);
+        Process p4 = new Process("p4", 1, 9);
         Process p5 = new Process("p5", 2, 2);
+        Process p6 = new Process("p6", 6, 3);
 
 
-        int q = 1;
-        Process[] processes = {p1, p2, p3, p4, p5};
+        int q = 3;
+        Process[] processes = {p1, p2, p3, p4, p5, p6};
         Arrays.sort(processes, Comparator.comparingInt(o -> o.arrivalTime));
 
         // for(int i = 0; i < processes.length; i++) {
