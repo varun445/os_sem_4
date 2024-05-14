@@ -6,16 +6,19 @@ public class LRU {
     public static void main(String[] args) {
         
         // Test case - 1
+        int[] arr = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1};
+        int frames = 4;
+        
         // int[] arr = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1};
-        // int frames = 4;
+        // int frames = 3;
         
         // Test case - 2
         // int[] arr = {3, 1, 2, 3, 4, 2, 3, 0, 3, 1, 3};
         // int frames = 3;
 
         // Test case - 3
-        int[] arr = {3, 2, 1, 3, 4, 1, 6, 2, 4, 3, 4, 2, 1, 4, 5, 2, 1, 3, 4};
-        int frames = 3;
+        // int[] arr = {3, 2, 1, 3, 4, 1, 6, 2, 4, 3, 4, 2, 1, 4, 5, 2, 1, 3, 4};
+        // int frames = 3;
 
         int hitCount = 0;
         int missCount = 0;
@@ -28,12 +31,13 @@ public class LRU {
             if(helper.get(arr[i]) == -1) {
                 hitOrMissList.add("Miss");
                 missCount++;
+                helper.put(arr[i], arr[i]);
             } else {
                 hitOrMissList.add("Hit");
                 hitCount++;
             }
-            helper.put(arr[i], arr[i]);
         }
+                
 
         helper.printList();
         System.out.println(hitOrMissList);
