@@ -40,6 +40,8 @@ public class SJF {
                 finishTime.add(time);
                 turnAroundTime.add(time - arrivalTimeOfCurrentProcess);
                 waitingTime.add((time - arrivalTimeOfCurrentProcess) - burstTimeOfCurrentProcess);
+
+                queue.sort(Comparator.comparingInt(o -> o[1]));
             }
         }
 
