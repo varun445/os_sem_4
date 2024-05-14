@@ -4,17 +4,18 @@ import java.util.HashMap;
 public class LFU {
     public static int frequency = 0;
     public static void main(String[] args) {
-        // int[] arr = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2};
-        // int frames = 3;
-        
-        int[] arr = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1};
+        int[] arr = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2};
         int frames = 3;
+        
+        // int[] arr = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1};
+        // int frames = 3;
 
         ArrayList<Integer> frameList = new ArrayList<>(frames);
 
         int hitCount = 0;
         int missCount = 0;
 
+        int flag = 0;
         ArrayList<String> hitOrMissList = new ArrayList<>();
         
         HashMap<Integer, Integer> freqMap = new HashMap<>();
@@ -41,14 +42,17 @@ public class LFU {
                 hitOrMissList.add("Hit");
                 freqMap.put(arr[i], freqMap.getOrDefault(arr[i], 0) + 1);
             } else {
-                int index = getIndexOfLeastFreq(freqMap, frameList);
-                int keyToRemoveFromArray = frameList.get(index);
+                int minFreq = getLeastFreq(freqMap, frameList);
+                while(freqMap.get(arr[flag]) != minFreq) {
+                    flag++;
+                }
+                int index = frameList.indexOf(arr[flag]);
+                freqMap.put(arr[flag], 0);
                 frameList.remove(index);
-                freqMap.put(keyToRemoveFromArray, 0);
-
-                frameList.add(arr[i]);
+                frameList.add(index, arr[i]);
                 freqMap.put(arr[i], freqMap.getOrDefault(arr[i], 0) + 1);
 
+                flag++;
                 missCount++;
                 hitOrMissList.add("Miss");
             }
@@ -65,15 +69,13 @@ public class LFU {
         System.out.println(missRatio);
     }
 
-    public static int getIndexOfLeastFreq(HashMap<Integer, Integer> freqMap, ArrayList<Integer> frameList) {
+    public static int getLeastFreq(HashMap<Integer, Integer> freqMap, ArrayList<Integer> frameList) {
         int minFreq = Integer.MAX_VALUE;
-        int indexToReturn = -1;
         for(int i = 0; i < frameList.size(); i++) {
             if(freqMap.get(frameList.get(i)) < minFreq) {
                 minFreq = freqMap.get(frameList.get(i));
-                indexToReturn = i;
             }
         }
-        return indexToReturn;
+        return minFreq;
     }
 }
