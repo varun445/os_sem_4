@@ -46,7 +46,7 @@ public class Priority {
                 turnAroundTime.add(time - arrivalTimeOfCurrentProcess);
                 waitingTime.add((time - arrivalTimeOfCurrentProcess) - burstTimeOfCurrentProcess);
            
-                queue.sort(Comparator.comparingInt(o -> o[1]));
+                queue.sort(Comparator.comparingInt(o -> o[2]));
             }
         }
 
